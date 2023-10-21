@@ -101,7 +101,7 @@ function main() {
             core.info(`${review.user.login} has already reviewed`);
             owner_users.delete(review.user.login);
         }
-        if (requestOwnerReviews && owner_users.size > 0) {
+        if (requestOwnerReviews && (owner_users.size > 0 || owner_teams.size > 0)) {
             core.info('Adding reviewers');
             const requestReviewersResult = yield client.rest.pulls.requestReviewers({
                 owner: github.context.repo.owner,

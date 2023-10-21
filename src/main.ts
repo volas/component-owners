@@ -74,7 +74,7 @@ async function main() {
         owner_users.delete(review.user.login);
     }
 
-    if (requestOwnerReviews && owner_users.size > 0) {
+    if (requestOwnerReviews && (owner_users.size > 0 || owner_teams.size > 0)) {
         core.info('Adding reviewers');
         const requestReviewersResult = await client.rest.pulls.requestReviewers({
             owner: github.context.repo.owner,
